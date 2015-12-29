@@ -1,0 +1,9 @@
+Package: co.melone.nolabels
+Name: NoLabels
+Depends: mobilesubstrate, preferenceloader
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Hide those icon labels!
+Maintainer: Caetano Melone <caetano@melone.co>
+Author: Caetano Melone <caetano@melone.co>
+Section: Tweaks
