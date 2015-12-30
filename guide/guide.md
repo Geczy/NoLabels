@@ -187,9 +187,13 @@ Congrats! You are now a tweak developer. If you want your icon labels back, you 
 Ready to add some customization to our tweak? Great!
 
 The first thing you are going to want to do is `cd` into the nolabels folder. For example, I would run
-<pre>cd ~/Projects/nolabels</pre>
+```bash
+cd ~/Projects/nolabels
+```
 Now you need to bring the NIC up again.
-<pre>$THEOS/bin/nic.pl</pre>
+```bash
+$THEOS/bin/nic.pl
+```
 Select option number eight. Keep the project and package name the same as our initial project to avoid confusion. I will make the class name prefix `NBL`.
 
 
@@ -213,41 +217,60 @@ In order to add the ability to turn our tweak on and off,  we need to head back 
 
 The first thing we are going to want to do is define where we want the preference values stored. I will store it as an NSString for later use. We will eventually set it up so our tweak can read the file,  and knowing what value is the correct one. Don't forget to replace my bundle identifier with yours!
 
-<pre>NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";</pre>
+```objective-c
+NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
+```
 
 Now we are going to add the ability to read the file with an NSMutableDictionary.
 
-<pre>NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];</pre>
+```objective-c
+NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];
+```
 Next, we are going to choose a `key` so we can tell if the tweak is enabled at any given time.
 
 To make things easy, my key will be `enabled`.
 
 Now skip to after we had `-(id)text {`, and add this line:
-<pre>BOOL enabled = [prefs objectForKey:@"enabled"] ? [[prefs objectForKey:@"enabled"] boolValue] : YES;</pre>
+```objective-c
+BOOL enabled = [prefs objectForKey:@"enabled"] ? [[prefs objectForKey:@"enabled"] boolValue] : YES;
+```
 This is checking for the status of a bool value called `enabled` in the plist file we defined.
 
 This is what your file should look like so far:
-<pre>NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
+```objective-c
+NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
 NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];
 
 %hook SBIconLabelImageParameters
 -(id)text {
 
-  BOOL enabled = [prefs objectForKey:@"enabled"] ? [[prefs objectForKey:@"enabled"] boolValue] : YES;</pre>
+  BOOL enabled = [prefs objectForKey:@"enabled"] ? [[prefs objectForKey:@"enabled"] boolValue] : YES;
+```
 
 Now that that is done, we have to write a couple of "if" and "else" statements.
 Start a new line, and type:
-<pre>if(enabled) {</pre>
+```objective-c
+if(enabled) {
+```
 So basically if the user wants the tweak to be enabled, we should return the value that makes the icon labels disappear.
-<pre>return nil;</pre>
+```logos
+return nil;
+```
+
 Close the bracket and on another new line, we'll be checking if the value is anything other than enabled.
-<pre>else {</pre>
+```objective-c
+else {
+```
 Now in the case that our user doesn't want the tweak enabled, we have to return our original value.  In Logos, we do this with `%orig;`. Type
-<pre>return %orig;</pre>
+```logos
+return %orig;
+```
 and close the bracket.
 
 After all that typing, this is what your Tweak.xm file will look like.
-<pre>NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
+
+```objective-c
+NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
 NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];
 
 %hook SBIconLabelImageParameters
@@ -262,18 +285,24 @@ NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile
   return %orig;
     }
 }
-%end</pre>
+%end
+```
 
 Remember when we first started writing our tweak and the value that hid our icon labels was `nil`? Well, thats what we are going to put here. Type out
-<pre>return nil;</pre>
+
+```logos
+return nil;
+```
 
 and close the bracket.
 
 This is what your code should look like:
 
-<pre>if(enabled) {
+```logos
+if(enabled) {
   return nil;
-}</pre>
+}
+```
 
 In a nutshell what this is doing is saying that "if" the user has the tweak enabled, it will return `nil`  or `null` which hides the icon labels. This is our default value.
 
@@ -282,15 +311,18 @@ Next, let's create an "else" statement. All you have to do is write `else` and o
 
 Code:
 
-<pre>else {
+```logos
+else {
   return %orig;
-}</pre>
+}
+```
 
 Now close the original bracket, we will telling Logos that we are done with this method with the constructor `%end`.
 
 This should be your Tweak.xm after everything. Please don't forget to replace my bundle identifier with yours.
 
-<pre>NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
+```objective-c
+NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
 NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];
 
 %hook SBIconLabelImageParameters
@@ -305,39 +337,43 @@ NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile
     return %orig;
   }
 }
-%end</pre>
+%end
+```
 
 Now that we are done with that, head to the `Resources` folder in the newly created preference directory.
 After we are done with our Tweak.xm, we can head to the "Resources" folder in our newly created preference directory. Open Root.plist and you it will look exactly like this (other than the identifier being different). This file controls the layout of our preference pane.
-<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-&lt;plist version="1.0"&gt;
-&lt;dict&gt;
-	&lt;key&gt;items&lt;/key&gt;
-	&lt;array&gt;
-		&lt;dict&gt;
-			&lt;key&gt;cell&lt;/key&gt;
-			&lt;string&gt;PSGroupCell&lt;/string&gt;
-			&lt;key&gt;label&lt;/key&gt;
-			&lt;string&gt;NoLabels First Page&lt;/string&gt;
-		&lt;/dict&gt;
-		&lt;dict&gt;
-			&lt;key&gt;cell&lt;/key&gt;
-			&lt;string&gt;PSSwitchCell&lt;/string&gt;
-			&lt;key&gt;default&lt;/key&gt;
-			&lt;true/&gt;
-			&lt;key&gt;defaults&lt;/key&gt;
-			&lt;string&gt;co.melone.nolabels&lt;/string&gt;
-			&lt;key&gt;key&lt;/key&gt;
-			&lt;string&gt;AwesomeSwitch1&lt;/string&gt;
-			&lt;key&gt;label&lt;/key&gt;
-			&lt;string&gt;Awesome Switch 1&lt;/string&gt;
-		&lt;/dict&gt;
-	&lt;/array&gt;
-	&lt;key&gt;title&lt;/key&gt;
-	&lt;string&gt;NoLabels&lt;/string&gt;
-&lt;/dict&gt;
-&lt;/plist&gt;></pre>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>NoLabels First Page</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>co.melone.nolabels</string>
+			<key>key</key>
+			<string>AwesomeSwitch1</string>
+			<key>label</key>
+			<string>Awesome Switch 1</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>NoLabels</string>
+</dict>
+</plist>
+```
 
 Delete everything between the two "dict" tags after "array" so we can get comfortable writing plist files. So now we should have something like this:
 
