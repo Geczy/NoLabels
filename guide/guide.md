@@ -34,8 +34,8 @@ We will be hijacking a SpringBoard method. The SpringBoard is what controls the 
 
 Sometimes, it is fun to see if a method that was created a few years ago is still present in the firmware we use today. So what you are going to want to do is switch to the iOS 6 section on Limneos' website. When you want to write a tweak, you are always going to want to have an idea of what you would like to change. I want to hide the labels underneath all the icons on the SpringBoard. Let's search for IconLabel. The first header that popped up was `SBIconLabelImageParameters.h`. Let's take a look.
 
-
-<pre>#import &lt;SpringBoard/SpringBoard-Structs.h&gt;
+```
+#import &lt;SpringBoard/SpringBoard-Structs.h&gt;
 #import &lt;CoreFoundation/NSCopying.h&gt;
 
 @class NSString;
@@ -65,7 +65,8 @@ Sometimes, it is fun to see if a method that was created a few years ago is stil
 -(char)isEqual:(id)arg1 ;
 -(unsigned)hash;
 -(id)description;
-@end</pre>
+@end
+```
 
 It seems like the class `SBIconLabelImageParameters` controls the font, the text color, and the shadow color of the icon labels. There is also a method called `-(id)text` that looks interesting . Maybe we can do something with this.
 
@@ -166,9 +167,8 @@ You can run either one of these, but if you would like to see the results on you
 
 I ran `make do`, and it compiled with no errors.
 
-Once you unlock our device you will see this:
+Once you unlock your device you will see that you have no icon labels.
 
-<img src="https://blog.melone.co/content/images/2015/12/IMG_0138.PNG" width="200" height="200"/>
 Congrats! You are now a tweak developer. If you want your icon labels back, you can uninstall NoLabels from Cydia.
 
 ##Creating a Preference Bundle for our tweak
