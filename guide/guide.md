@@ -441,7 +441,24 @@ Compile your tweak, open the Settings app, and scroll to the NoLabels bundle. Op
 
 Congrats, you have just created your first on/off switch.
 
+There is one last thing I would like you to do. Open your the `control` file. It should look like this:
+```
+Package: co.melone.nolabels
+Name: NoLabels
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome MobileSubstrate tweak!
+Maintainer: Caetano Melone <caetano@melone.co>
+Author: Caetano Melone <caetano@melone.co>
+Section: Tweaks
+```
 
+I am going to change the description to: `Hide those icon labels!` and add a dependency. Add a comma after `mobilesubstrate` and type `preferenceloader`. This makes sure that the user will be able to see our preference pane after installing your tweak.
+
+```
+Depends: mobilesubstrate, preferenceloader
+```
 
 Thank you for taking the time to read this. If you would like to contribute to this guide, please take a look at [this](https://github.com/nmcae/NoLabels/tree/master/guide#contributing) page.
 
