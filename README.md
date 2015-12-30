@@ -13,3 +13,8 @@ First, you are going to need [Theos](https://github.com/kirb/theos) set up corre
 If you would like to contribute to this project, I would greatly appreciate it if you opened an issue or fork this repository and start a pull request.
 
 If you want to help contribute to the guide, see here.
+
+#NoLabels is a very simple tweak that I wrote that hides the labels under the icons on your iOS device. I wrote a [post](https://blog.melone.co/intro-to-cydia-development) on my blog explaining the whole process.
+
+##Compiling
+I wrote this with a [fork of Theos](https://github.com/kirb/theos) by @kirb. It is a huge improvement over the original Theos by Dustin Howett, and it is great especially for beginners.
