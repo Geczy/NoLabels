@@ -1,3 +1,5 @@
+#Intro to Cydia development
+
 I wrote this to help people get their start in the Cydia developer community.
 
 After asking on /r/jailbreak whether or not to write this guide, I decided to do it due to popular demand. A few notes:
