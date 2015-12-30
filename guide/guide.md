@@ -35,12 +35,12 @@ We will be hijacking a SpringBoard method. The SpringBoard is what controls the 
 Sometimes, it is fun to see if a method that was created a few years ago is still present in the firmware we use today. So what you are going to want to do is switch to the iOS 6 section on Limneos' website. When you want to write a tweak, you are always going to want to have an idea of what you would like to change. I want to hide the labels underneath all the icons on the SpringBoard. Let's search for IconLabel. The first header that popped up was `SBIconLabelImageParameters.h`. Let's take a look.
 
 ```objective-c
-#import &lt;SpringBoard/SpringBoard-Structs.h&gt;
-#import &lt;CoreFoundation/NSCopying.h&gt;
+#import <SpringBoard/SpringBoard-Structs.h>
+#import <CoreFoundation/NSCopying.h>
 
 @class NSString;
 
-@interface SBIconLabelImageParameters : NSObject &lt;NSCopying&gt; {
+@interface SBIconLabelImageParameters : NSObject <NSCopying> {
 
     NSString* _text;
     char _containsNonLatinLikeCharacters;
@@ -83,7 +83,8 @@ Now `cd` into ~/Projects. Run the following command:
 
 This will start the NIC (New Instance Creator). This is where Theos asks you what type of project you would like to create. This should be the output:
 
-<pre>NIC 2.0 - New Instance Creator
+```
+NIC 2.0 - New Instance Creator
 ------------------------------
 [1.] iphone/activator_event
 [2.] iphone/application_modern
@@ -96,7 +97,8 @@ This will start the NIC (New Instance Creator). This is where Theos asks you wha
 [9.] iphone/preference_bundle_modern
 [10.] iphone/tool
 [11.] iphone/tweak
-[12.] iphone/xpc_service</pre>
+[12.] iphone/xpc_service
+```
 We want to make a tweak, right? So let's select 11. I will go through all the different options.
 <pre>Project Name (required):</pre>
 This is the name of the tweak. I'll call it NoLabels
@@ -136,8 +138,10 @@ Now Logos knows we want to modify methods inside of the `SBIconLabelImageParamet
 Start a new line and type the method that we wanted to modify. Hint: it was `(id)text`.
 This is what your code should look like so far:
 
-<pre>%hook SBIconLabelImageParameters
--(id)text</pre>
+```logos
+%hook SBIconLabelImageParameters
+-(id)text
+```
 
 Next, we are going to return the value we want it to be. In this case, since our method represents the label text, wouldn't it make sense to return it as nothing? That is called `nil` or `null`. Open a curly bracket (`{`) and type:
 
@@ -145,11 +149,13 @@ Next, we are going to return the value we want it to be. In this case, since our
 
 Then close your bracket (`}`). And now let's tell Logos that we are done modifying this class by using the `%end` constructor. This is what my Tweak.xm looks like now:
 
-<pre>%hook SBIconLabelImageParameters
+```logos
+%hook SBIconLabelImageParameters
 -(id)text {
     return nil;
 }
-%end</pre>
+%end
+```
 
 Now that you are 100% sure that all the code is written correctly, we can go ahead and compile. Make sure that you are in your project folder.
 
