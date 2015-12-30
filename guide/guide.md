@@ -74,12 +74,15 @@ It seems like the class `SBIconLabelImageParameters` controls the font, the text
 
 Open your Terminal, and create a folder where all your projects will be held. The best option is probably to store it in your home folder.
 
-
-<pre>mkdir ~/Projects</pre>
+```bash
+mkdir ~/Projects
+```
 
 Now `cd` into ~/Projects. Run the following command:
 
-<pre>$THEOS/bin/nic.pl</pre>
+```bash
+$THEOS/bin/nic.pl
+```
 
 This will start the NIC (New Instance Creator). This is where Theos asks you what type of project you would like to create. This should be the output:
 
