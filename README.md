@@ -15,7 +15,7 @@ Clone this repository in your projects folder, `cd` into the `nolabels` folder a
 ##Contributing 
 If you feel like you could help by making the code a little bit more readable or opening an issue to help squash a nasty bug, I would greatly appreciate either one. 
 
-See [this page]() if you want to help contribute to the guide itself.
+See [this page](https://github.com/nmcae/NoLabels/tree/master/guide#contributing) if you want to help contribute to the guide itself.
 
 I can be contacted via Twitter ([@nmcae](https://twitter.com/nmcae))
 
