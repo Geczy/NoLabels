@@ -2,7 +2,7 @@
 This is a very simple tweak that I wrote that hides the labels under the icons on your iOS device. I wrote a [post](https://blog.melone.co/intro-to-cydia-development) on my blog explaining the whole process.
 
 ##Compiling
-I wrote this with a [fork of Theos](https://github.com/kirb/theos) by @kirb. It is a huge improvement over the original Theos by Dustin Howett, and it's great especially for beginners. If you are having any difficulty compiling it, it most likely is an issue with your Theos setup. You can take a look at the [troubleshooting page](http://iphonedevwiki.net/index.php/Theos/Troubleshooting) on the iPhoneDevWiki.
+I wrote this with a [fork of Theos](https://github.com/kirb/theos) by [@kirb](https://github.com/kirb). It is a huge improvement over the original Theos by Dustin Howett, and it's great especially for beginners. If you are having any difficulty compiling it, it most likely is an issue with your Theos setup. You can take a look at the [troubleshooting page](http://iphonedevwiki.net/index.php/Theos/Troubleshooting) on the iPhoneDevWiki.
 
 Clone this repository in your projects folder, `cd` into the `nolabels` folder and you can run any of the following commands.
 
@@ -15,7 +15,8 @@ Clone this repository in your projects folder, `cd` into the `nolabels` folder a
 ##Contributing 
 If you feel like you could help by making the code a little bit more readable or opening an issue to help squash a nasty bug, I would greatly appreciate either one. 
 
-See [this page]()if you want to help contribute to the guide itself.
+See [this page]() if you want to help contribute to the guide itself.
 
 I can be contacted via Twitter ([@nmcae](https://twitter.com/nmcae))
+
 Or you can shoot me an email (caetano@melone.co)
