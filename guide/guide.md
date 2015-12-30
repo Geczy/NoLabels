@@ -34,7 +34,7 @@ We will be hijacking a SpringBoard method. The SpringBoard is what controls the 
 
 Sometimes, it is fun to see if a method that was created a few years ago is still present in the firmware we use today. So what you are going to want to do is switch to the iOS 6 section on Limneos' website. When you want to write a tweak, you are always going to want to have an idea of what you would like to change. I want to hide the labels underneath all the icons on the SpringBoard. Let's search for IconLabel. The first header that popped up was `SBIconLabelImageParameters.h`. Let's take a look.
 
-```
+```objective-c
 #import &lt;SpringBoard/SpringBoard-Structs.h&gt;
 #import &lt;CoreFoundation/NSCopying.h&gt;
 
