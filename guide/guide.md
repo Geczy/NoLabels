@@ -131,7 +131,9 @@ Now let's start writing some actual code.
 
 Open the Tweak.xm file. Delete everything inside. We will start by telling Logos which class we would like to modify. The `%hook` constructor literally "hooks" into a class. So let's type
 
-<pre>%hook SBIconLabelImageParameters</pre>
+```logos
+%hook SBIconLabelImageParameters
+```
 
 Now Logos knows we want to modify methods inside of the `SBIconLabelImageParameters` class.
 
@@ -145,7 +147,9 @@ This is what your code should look like so far:
 
 Next, we are going to return the value we want it to be. In this case, since our method represents the label text, wouldn't it make sense to return it as nothing? That is called `nil` or `null`. Open a curly bracket (`{`) and type:
 
-<pre>return nil;</pre>
+```logos
+return nil;
+```
 
 Then close your bracket (`}`). And now let's tell Logos that we are done modifying this class by using the `%end` constructor. This is what my Tweak.xm looks like now:
 
