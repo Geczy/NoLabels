@@ -378,17 +378,19 @@ After we are done with our Tweak.xm, we can head to the "Resources" folder in ou
 Delete everything between the two "dict" tags after "array" so we can get comfortable writing plist files. So now we should have something like this:
 
 
-<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-    &lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-    &lt;plist version="1.0"&gt;
-        &lt;dict&gt;
-            &lt;key&gt;items&lt;/key&gt;
-            &lt;array&gt;
-            &lt;/array&gt;
-            &lt;key&gt;title&lt;/key&gt;
-            &lt;string&gt;NoLabels&lt;/string&gt;
-        &lt;/dict&gt;
-    &lt;/plist&gt;</pre>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+        <dict>
+            <key>items</key>
+            <array>
+            </array>
+            <key>title</key>
+            <string>NoLabels</string>
+        </dict>
+</plist>
+```
 
 Now, open a "dict" tag after array and press enter. After you do this, you are going to want to create a "key" tag. Put "cell" between them. For example: `<key>cell<key>`. A `string` tag is basically what the key tag was asking for. So in between the string tags put `PSSwitchCell`. What it is should be self explanatory. It is an on/off switch that either outputs a BOOL value of TRUE or FALSE.
 
@@ -403,29 +405,32 @@ Now create a key named `label` and we will call the string `Enable`.
 
 
 After writing everything, this is what your plist file should look like:
-<pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-    &lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
-    &lt;plist version="1.0"&gt;
-        &lt;dict&gt;
-            &lt;key&gt;items&lt;/key&gt;
-            &lt;array&gt;
-                &lt;dict&gt;
-                    &lt;key&gt;cell&lt;/key&gt;
-                    &lt;string&gt;PSSwitchCell&lt;/string&gt;
-                    &lt;key&gt;default&lt;/key&gt;
-                    &lt;true/&gt;
-                    &lt;key&gt;defaults&lt;/key&gt;
-                    &lt;string&gt;co.melone.nolabels&lt;/string&gt;
-                    &lt;key&gt;key&lt;/key&gt;
-                    &lt;string&gt;enabled&lt;/string&gt;
-                    &lt;key&gt;label&lt;/key&gt;
-                    &lt;string&gt;Enable&lt;/string&gt;
-                &lt;/dict&gt;
-            &lt;/array&gt;
-            &lt;key&gt;title&lt;/key&gt;
-            &lt;string&gt;NoLabels&lt;/string&gt;
-        &lt;/dict&gt;
-    &lt;/plist&gt;</pre>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+      <dict>
+          <key>items</key>
+          <array>
+              <dict>
+                  <key>cell</key>
+                  <string>PSSwitchCell</string>
+                  <key>default</key>
+                  <true/>
+                  <key>defaults</key>
+                  <string>co.melone.nolabels</string>
+                  <key>key</key>
+                  <string>enabled</string>
+                  <key>label</key>
+                  <string>Enable</string>
+              </dict>
+          </array>
+          <key>title</key>
+          <string>NoLabels</string>
+      </dict>
+</plist>
+```
 
 Compile your tweak, open the Settings app, and scroll to the NoLabels bundle. Open it, and you should see and on/off switch with the label `Enabled`. You will see if you turn this tweak off, and respring, you will have your icon labels back.
 
