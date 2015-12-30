@@ -293,58 +293,6 @@ NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile
 %end
 ```
 
-Remember when we first started writing our tweak and the value that hid our icon labels was `nil`? Well, thats what we are going to put here. Type out
-
-```logos
-return nil;
-```
-
-and close the bracket.
-
-This is what your code should look like:
-
-```logos
-if(enabled) {
-  return nil;
-}
-```
-
-In a nutshell what this is doing is saying that "if" the user has the tweak enabled, it will return `nil`  or `null` which hides the icon labels. This is our default value.
-
-
-Next, let's create an "else" statement. All you have to do is write `else` and open a bracket. Here we will call our original function with `%orig`. This will have the user return to his default settings, or actually having icon labels now. Also, don't forget to close the bracket.
-
-Code:
-
-```logos
-else {
-  return %orig;
-}
-```
-
-Now close the original bracket, we will telling Logos that we are done with this method with the constructor `%end`.
-
-This should be your Tweak.xm after everything. Please don't forget to replace my bundle identifier with yours.
-
-```objective-c
-NSString *settingsPath = @"/var/mobile/Library/Preferences/co.melone.nolabels.plist";
-NSMutableDictionary *prefs = [[NSMutableDictionary alloc] initWithContentsOfFile:settingsPath];
-
-%hook SBIconLabelImageParameters
--(id)text {
-
-  BOOL enabled = [prefs objectForKey:@"enabled"] ? [[prefs objectForKey:@"enabled"] boolValue] : YES;
-
-  if(enabled) {
-    return nil;
-  }
-  else {
-    return %orig;
-  }
-}
-%end
-```
-
 Now that we are done with that, head to the `Resources` folder in the newly created preference directory.
 After we are done with our Tweak.xm, we can head to the "Resources" folder in our newly created preference directory. Open Root.plist and you it will look exactly like this (other than the identifier being different). This file controls the layout of our preference pane.
 
